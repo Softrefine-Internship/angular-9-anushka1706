@@ -90,7 +90,7 @@ export class AuthComponent implements OnInit {
           this.router.navigate(['bloglist']);
         },
         error: (err) => {
-          console.error('Signup failed', err);
+          console.log('Signup failed', err);
         }
       })
     }

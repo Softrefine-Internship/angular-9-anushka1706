@@ -20,7 +20,7 @@ export class UserActivityService {
         const userId = user.id;
 
         if (!userId) {
-            console.error('User not logged in');
+            console.log('User not logged in');
             return;
         }
 
