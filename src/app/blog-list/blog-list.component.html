@@ -1,0 +1,22 @@
+<div class="blog-container">
+  <p class="heading">Your next favorite read is waiting.</p>
+  <div #blogList class="bloglist" (scroll)="onScroll($event)">
+    <div class="content-container" *ngIf="isLoading">
+      <div class="content-loading">
+        <app-content-placeholder></app-content-placeholder>
+      </div>
+      <div *ngIf="isLoading" class="content-loading">
+        <app-content-placeholder></app-content-placeholder>
+      </div>
+      <div *ngIf="isLoading" class="content-loading">
+        <app-content-placeholder></app-content-placeholder>
+      </div>
+    </div>
+    <div *ngIf="!isLoading" class="blog-item-container">
+      <div class="blog-items" *ngFor="let items of allBlog">
+        <app-blog-item [blogItems]="items" [categories]="categories"></app-blog-item>
+      </div>
+    </div>
+  </div>
+</div>
+

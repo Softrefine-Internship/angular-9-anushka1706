@@ -1,0 +1,17 @@
+<header>
+    <div class="header-container">
+      <a class="logo-name" routerLink="/">blogNest.</a>
+      <div class="btn-group">
+        <button *ngIf="!loggedIn" class="login-btn" (click)="onLogin()">Login</button>
+        <button *ngIf="!loggedIn" class="signup-btn" (click)="onSignup()">Sign up</button>
+        <div class="user-section" *ngIf="loggedIn">
+          <button class="profile-section">
+            <img src="../../assets/user.jpg" alt="" class="user-profile">
+            <span class="user-name">{{username}}</span>
+            <span class="user-initials">{{ userInitials }}</span>
+          </button>
+          <button class="logout-btn" (click)="onLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>

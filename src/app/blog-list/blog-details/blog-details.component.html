@@ -1,0 +1,18 @@
+<div class="details-container">
+  <p class="category">{{ blogDetailsData.category | uppercase }}</p>
+  <p class="heading">{{ blogDetailsData.title }}</p>
+  <div class="date-group">
+    <p class="date">
+      Created at :
+      <span>{{ blogDetailsData.created_at | date : "yyyy-MM-dd HH:mm" }}</span>
+    </p>
+    <p class="date">
+      Updated at :
+      <span>{{ blogDetailsData.updated_at | date : "yyyy-MM-dd HH:mm" }}</span>
+    </p>
+  </div>
+  <div class="blogger-detail">
+    <p class="publisher-name">Published by : <img class="blogger-img" [src]="bloggerDetail.profile_picture" alt=""><span>{{bloggerDetail.first_name + " " + bloggerDetail.last_name}}</span></p>
+  </div>
+  <div class="content-text" [innerHTML]="blogDetailsData.content_html"></div>
+</div>

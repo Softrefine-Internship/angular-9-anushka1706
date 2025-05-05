@@ -1,0 +1,45 @@
+.hero-section {
+  background-image: url("../../assets/hero-section.jpg"),
+    linear-gradient(to bottom, white, white);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px;
+  color: white;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  object-fit: contain;
+  align-items: center;
+}
+.hero-section {
+  border-radius: 20px;
+  background-color: rgb(227, 240, 227);
+  height: 100%;
+  padding: 2rem;
+  .details {
+    margin-top: 5rem;
+    width: 60%;
+    color: rgb(48, 48, 48);
+    font-weight: 550;
+    font-size: 3rem;
+    @media(max-width:730px){
+      width: 100%;
+      font-size: 2.5rem;
+    }
+    @media(max-width:450px){
+      width: 100%;
+      font-size: 2rem;
+    }
+  }
+  .explore-btn {
+    background-color: #81ac89;
+    color: white;
+    transition: background-color 0.4s;
+    &:hover {
+      background-color: rgb(85, 219, 85);
+    }
+  }
+}

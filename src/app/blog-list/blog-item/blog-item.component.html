@@ -1,0 +1,28 @@
+<img src="{{ blogItems.photo_url }}" class="blog-img" />
+<a class="blog-heading" (click)="onBlogClick(blogItems.id)">{{
+  blogItems.title
+}}</a>
+<div class="info-group">
+  <p class="sub-heading">
+    Category :
+    <span class="category-name">{{ blogItems.category | uppercase }}</span>
+  </p>
+  <p class="small-heading">
+    Created at :
+    <span>{{ blogItems.created_at | date : "yyyy-MM-dd HH:mm" }}</span>
+  </p>
+  <p class="small-heading">
+    Updated at :
+    <span>{{ blogItems.updated_at | date : "yyyy-MM-dd HH:mm" }}</span>
+  </p>
+  <div class="activities">
+    <button class="bookmark" (click)="updateActivity(blogItems.id, 'bookmark')">
+      <i *ngIf="!isBookMarked" class="bi bi-bookmark bookmark-custom"></i>
+      <i *ngIf="isBookMarked" class="bi bi-bookmark-fill bookmark-custom"></i>
+    </button>
+    <button class="like" (click)="updateActivity(blogItems.id, 'like')">
+      <i *ngIf="!isLiked" class="bi bi-heart like-icon like-custom"></i>
+      <i *ngIf="isLiked" class="bi bi-heart-fill like-icon like-custom"></i>
+    </button>
+  </div>
+</div>

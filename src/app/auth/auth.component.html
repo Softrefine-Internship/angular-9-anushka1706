@@ -1,0 +1,90 @@
+<div class="auth-container">
+  <div class="form-container">
+    <form *ngIf="mode === 'login'" class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <p class="heading">Login</p>
+      <p class="response-error">{{this.error}}</p>
+      <div class="fields">
+        <label class="sub-heading">Email</label>
+        <input type="text" class="form-control form-input" formControlName="email" />
+        <p *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-msg">
+          Please enter valid email.
+        </p>
+      </div>
+
+      <div class="fields">
+        <label>Password</label>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control form-input" placeholder="Password" formControlName="password" />
+        <div class="btn-wrapper">
+          <button class="btn btn-outline-secondary eye-btn" type="button" (click)="togglePassword()">
+            <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+          </button>
+        </div>
+        <p *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-msg">
+          Please enter valid password.
+        </p>
+      </div>
+
+      <button class="login-btn" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <form *ngIf="mode === 'signup'" class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <p class="heading">Sign up</p>
+
+      <div class="fields">
+        <label class="sub-heading">First name</label>
+        <input type="text" class="form-control form-input" formControlName="signupFirstname" />
+        <p *ngIf="signupForm.get('signupFirstname')?.invalid && signupForm.get('signupFirstname')?.touched" class="error-msg">
+          Please enter valid first name.
+        </p>
+      </div>
+
+      <div class="fields">
+        <label class="sub-heading">Last name</label>
+        <input type="text" class="form-control form-input" formControlName="signupLastname" />
+        <p *ngIf="signupForm.get('signupLastname')?.invalid && signupForm.get('signupLastname')?.touched" class="error-msg">
+          Please enter valid last name.
+        </p>
+      </div>
+
+      <div class="fields">
+        <label class="sub-heading">Email</label>
+        <input type="text" class="form-control form-input" formControlName="signupEmail" />
+        <p *ngIf="signupForm.get('signupEmail')?.invalid && signupForm.get('signupEmail')?.touched" class="error-msg">
+          Please enter valid email.
+        </p>
+      </div>
+
+      <div class="fields">
+        <label>Password</label>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control form-input" placeholder="Password" formControlName="signupPassword" />
+        <div class="btn-wrapper">
+          <button class="btn btn-outline-secondary eye-btn" type="button" (click)="togglePassword()">
+            <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+          </button>
+        </div>
+        <p *ngIf="signupForm.get('signupPassword')?.invalid && signupForm.get('signupPassword')?.touched" class="error-msg">
+          Please enter valid password (8-15 characters).
+        </p>
+      </div>
+
+      <div class="fields">
+        <label>Confirm Password</label>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control form-input" placeholder="Confirm Password" formControlName="signupConfirmPassword" />
+        <button class="btn btn-outline-secondary eye-btn" type="button" (click)="togglePassword()">
+          <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+        </button>
+        <p *ngIf="signupForm.get('signupConfirmPassword')?.invalid && signupForm.get('signupConfirmPassword')?.touched" class="error-msg">
+          Please confirm your password.
+        </p>
+        <p *ngIf="signupForm.get('signupPassword')?.value !== signupForm.get('signupConfirmPassword')?.value && signupForm.get('signupConfirmPassword')?.touched" class="error-msg">
+          Passwords do not match.
+        </p>
+      </div>
+
+      <button class="login-btn" [disabled]="signupForm.invalid || signupForm.get('signupPassword')?.value !== signupForm.get('signupConfirmPassword')?.value">
+        Sign up
+      </button>
+    </form>
+  </div>
+  <div class="right-container"></div>
+</div>

@@ -1,0 +1,87 @@
+.auth-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .form-container {
+    background-color: rgb(241, 239, 239);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 15px;
+    align-items: center;
+    padding: 2rem;
+    width: 35%;
+    height:auto;
+    max-height: 100%;
+    @media(max-width:1200px){
+      width: 40%;
+    }
+    @media(max-width:1000px){
+      width: 50%;
+    }
+    @media(max-width:680px){
+      width: 70%;
+    }
+    @media(max-width:500px){
+      width: 100%;
+    }
+    .form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+    }
+    .fields {
+      width: 100%;
+    }
+  }
+  .heading {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+  .login-btn {
+    background-color: #90c69a;
+    border: none;
+    padding: 5px 1rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    color: white;
+    align-self: center;
+  }
+  .form-input {
+    padding: 5px;
+    width: 100%;
+  }
+}
+label {
+  font-size: 1.5rem;
+}
+.eye-btn {
+  position: absolute;
+  top: 0%;
+  transform: translateY(-85%);
+  right: 0%;
+  &:hover {
+    background-color: transparent;
+    color: grey;
+  }
+}
+.error-msg {
+  color: red;
+  font-weight: 450;
+}
+.ng-invalid.ng-touched.form-input{
+  border: 2px solid red;
+}
+.btn-wrapper{
+  position: relative;
+}
+.response-error{
+  color:red;
+  font-weight: 500;
+}
