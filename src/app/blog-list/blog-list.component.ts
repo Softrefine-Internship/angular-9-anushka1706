@@ -30,7 +30,7 @@ export class BlogListComponent implements OnInit {
     if (this.blogList) {
       scrollPosition = this.blogList.nativeElement.scrollTop;
     }
-    
+
     this.blogService.fetchBlogs(this.offset, this.limit).subscribe({
       next: (res) => {
         this.totalBlogs = res.total_blogs;
@@ -38,9 +38,9 @@ export class BlogListComponent implements OnInit {
           this.isEndOfList = true;
         }
         this.allBlog.push(...res.blogs);
-        console.log(this.offset, this.limit)
+        this.offset += this.limit
         this.isLoading = false;
-        
+
         setTimeout(() => {
           if (this.blogList) {
             this.blogList.nativeElement.scrollTop = scrollPosition;
@@ -52,12 +52,11 @@ export class BlogListComponent implements OnInit {
         this.isLoading = false;
       }
     });
-    this.offset += this.limit
   }
 
   onScroll(event: any): void {
     const element = event.target;
-    if (element.scrollHeight - element.scrollTop <= element.clientHeight + 100) {
+    if (element.scrollHeight - element.scrollTop <= element.clientHeight + 1) {
       this.loadBlogs();
     }
   }
