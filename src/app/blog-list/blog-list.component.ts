@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BlogService } from './blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-blog-list',
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class BlogListComponent implements OnInit {
   allBlog: any[] = [];
   offset = 0;
-  limit = 8;
+  limit = 6;
   totalBlogs = 0;
   isLoading = true
   isEndOfList = false;
@@ -37,7 +38,7 @@ export class BlogListComponent implements OnInit {
           this.isEndOfList = true;
         }
         this.allBlog.push(...res.blogs);
-        this.offset += this.limit;
+        console.log(this.offset, this.limit)
         this.isLoading = false;
 
         setTimeout(() => {
@@ -56,6 +57,7 @@ export class BlogListComponent implements OnInit {
   onScroll(event: any): void {
     const element = event.target;
     if (element.scrollHeight - element.scrollTop <= element.clientHeight + 10) {
+      this.offset += this.limit
       this.loadBlogs();
     }
   }

@@ -10,7 +10,7 @@ export class BlogService {
     error !: string
 
     constructor(private http: HttpClient) { }
-    fetchBlogs(offset: number = 0, limit: number = 1) {
+    fetchBlogs(offset:number, limit: number) {
         return this.http.get<any>(`${this.API}?offset=${offset}&limit=${limit}`).pipe(
             catchError(this.handleError)
         );
