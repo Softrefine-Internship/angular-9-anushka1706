@@ -15,7 +15,7 @@ export class BlogListComponent implements OnInit {
   totalBlogs = 0;
   isLoading = true
   isEndOfList = false;
-  categories = ['Love', 'Maths', 'Gaming', 'Programming']
+  categories = ['Love', 'Mayths', 'Gaming', 'Programming']
   scrollPosition !: number
   visitedDetails !: boolean
   @ViewChild('blogList') blogList!: ElementRef;
