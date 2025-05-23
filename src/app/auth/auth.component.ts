@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
   signupForm !: FormGroup
   mode: 'login' | 'signup' = 'login';
   showPassword = false;
+  showConfirmPassword = false
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router, private userStorage: UserStorage) { }
 
   ngOnInit() {
@@ -44,8 +45,8 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  togglePassword() {
-    this.showPassword = !this.showPassword;
+  togglePassword(mode: string) {
+    (mode === 'pwd') ? this.showPassword = !this.showPassword : this.showConfirmPassword = !this.showConfirmPassword
   }
 
   onSubmit() {
@@ -65,7 +66,7 @@ export class AuthComponent implements OnInit {
             this.router.navigate(['bloglist']);
           },
           error: (err) => {
-            this.error =  err;
+            this.error = err;
 
           }
         }
@@ -90,7 +91,7 @@ export class AuthComponent implements OnInit {
           this.router.navigate(['bloglist']);
         },
         error: (err) => {
-          console.log('Signup failed', err);
+          this.error = err
         }
       })
     }

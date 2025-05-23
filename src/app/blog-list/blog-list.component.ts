@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BlogService } from './blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { tick } from '@angular/core/testing';
+import { UserActivityService } from '../userActivity.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -16,17 +16,27 @@ export class BlogListComponent implements OnInit {
   isLoading = true
   isEndOfList = false;
   categories = ['Love', 'Maths', 'Gaming', 'Programming']
+  scrollPosition !: number
+  visitedDetails !: boolean
   @ViewChild('blogList') blogList!: ElementRef;
 
-  constructor(private blogService: BlogService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private blogService: BlogService, private router: Router, private route: ActivatedRoute, private userActivity: UserActivityService) { }
 
   ngOnInit(): void {
+    this.userActivity.fetchUserActivity()
+    this.visitedDetails = this.blogService.visitedetails.getValue()
+    if (this.visitedDetails) {
+      this.loadPrevious()
+    }
+    this.blogService.scrollPosition.subscribe(position => {
+      this.scrollPosition = position
+    })
     this.loadBlogs();
   }
 
   loadBlogs(): void {
     if (this.isEndOfList) return;
-    let scrollPosition = 0;
+    let scrollPosition = this.blogService.scrollPosition.getValue() | 0
     if (this.blogList) {
       scrollPosition = this.blogList.nativeElement.scrollTop;
     }
@@ -38,17 +48,19 @@ export class BlogListComponent implements OnInit {
           this.isEndOfList = true;
         }
         this.allBlog.push(...res.blogs);
+        this.blogService.allBlogs.next(this.allBlog)
         this.offset += this.limit
+        this.limit = 6
         this.isLoading = false;
 
         setTimeout(() => {
           if (this.blogList) {
             this.blogList.nativeElement.scrollTop = scrollPosition;
+            this.blogService.scrollPosition.next(this.blogList.nativeElement.scrollTop)
           }
         }, 0);
       },
       error: (err) => {
-        console.log('Error fetching blogs', err);
         this.isLoading = false;
       }
     });
@@ -60,5 +72,8 @@ export class BlogListComponent implements OnInit {
       this.loadBlogs();
     }
   }
-
+  loadPrevious() {
+    this.limit = this.blogService.allBlogs.getValue().length
+    this.offset = 0
+  }
 }

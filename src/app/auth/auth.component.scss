@@ -13,18 +13,18 @@
     align-items: center;
     padding: 2rem;
     width: 35%;
-    height:auto;
+    height: auto;
     max-height: 100%;
-    @media(max-width:1200px){
+    @media (max-width: 1200px) {
       width: 40%;
     }
-    @media(max-width:1000px){
+    @media (max-width: 1000px) {
       width: 50%;
     }
-    @media(max-width:680px){
+    @media (max-width: 680px) {
       width: 70%;
     }
-    @media(max-width:500px){
+    @media (max-width: 500px) {
       width: 100%;
     }
     .form {
@@ -71,17 +71,15 @@ label {
     color: grey;
   }
 }
-.error-msg {
+.error-msg,
+.response-error {
   color: red;
   font-weight: 450;
+  font-size: 1.5rem;
 }
-.ng-invalid.ng-touched.form-input{
+.ng-invalid.ng-touched.form-input {
   border: 2px solid red;
 }
-.btn-wrapper{
+.btn-wrapper {
   position: relative;
-}
-.response-error{
-  color:red;
-  font-weight: 500;
 }

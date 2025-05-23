@@ -19,19 +19,18 @@ export class BlogItemComponent implements OnInit {
     this.activitySevice.userActivity.subscribe(activity => {
       this.isLiked = activity.liked.includes(this.blogItems.id);
       this.isBookMarked = activity.bookmarked.includes(this.blogItems.id);
-      console.log(this.isLiked)
     });
   }
 
   onBlogClick(id: number) {
-    console.log(id)
     this.router.navigate(['details'], {
       relativeTo: this.route,
       queryParams: { id }
     });
   }
 
-  updateActivity(id: number, action: string) {
+  updateActivity(id: number, action: string,e: Event) {
+    e.stopPropagation()
     if (action === 'like') this.isLiked = !this.isLiked
     if (action === 'bookmark') this.isBookMarked = !this.isBookMarked
     this.activitySevice.updateActivity(id, action)

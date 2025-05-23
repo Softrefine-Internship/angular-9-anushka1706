@@ -48,7 +48,7 @@
     align-self: center;
     display: flex;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
     span {
       font-weight: 600;
       font-size: 1.3rem;
@@ -58,5 +58,18 @@
     height: 4rem;
     width: 4rem;
     border-radius: 50%;
+  }
+}
+.back-link {
+  text-decoration: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: rgb(207, 246, 228);
+  border-radius: 10px;
+  width: fit-content;
+  color: black;
+  font-weight: 500;
+  &:hover {
+    cursor: pointer;
   }
 }
